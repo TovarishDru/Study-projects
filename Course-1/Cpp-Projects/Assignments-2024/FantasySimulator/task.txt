@@ -1,0 +1,74 @@
+Overview: In this assignment, you will develop a C++ program that simulates a medieval fantasy story. Your program will create characters, weapons, and spells that interact within a dynamic story. The story progresses through a series of events such as attacks, spawns, and deaths, with each event written to an output file to narrate the unfolding adventure.
+
+These are the entities in this task:
+
+  - Narrator.
+  - Characters: Character, Fighter, Wizard, Archer.
+  - Physical items: PhysicalItem, Weapon, Potion, SpellSheet (Spell).
+  - Containers: Container, Arsenal (a container of weapons), MedicalBag (a container of potions), SpellBook (a container of SpellSheets).
+
+Each event causes some text in the output file. Specifications:
+
+  - One Narrator should be created, at the beginning.
+  - It's guaranteed that no character is going to be named Narrator.
+  - Names of items and characters are unique.
+  - Physical Item with owner property.
+    1) Weapon: each weapon has a certain damage value.
+    2) Potion: drink increases HP. Each potion has a certain healing value. A character can drink another character's potion.
+    3) SpellSheet. Kills one of a given set of characters. A character can cast a spell as long as they have the associated SpellSheet in their SpellBook.
+    * When cast, the spell causes its sheet to burn (the owner can't use it anymore). A potion can be drunk once. Unlike weapons, each potion and spell can be used only once, whereas weapons can be used indefinitely.
+  - Container:
+    1) Arsenal (a container of weapons). Each Arsenal has a different set of weapons.
+    2) MedicalBag (a container of potions). Each MedicalBag has a different set of potions.
+    3) SpellBook (a container of spells). Each SpellBook has a different set of spellSheets.
+  - Character has health points:
+    Fighter:
+      * Arsenal of 3 Weapons at max.
+      * MedicalBag of 5 potions at max.
+    Wizard: can cast spell and drink
+      * SpellBook of 10 spells at max.
+      * MedicalBag of 10 potions at max.
+    Archer:
+      * Arsenal of 2 weapons at max.
+      * MedicalBag of 3 potions at max.
+      * SpellBook of 2 spells at max.
+
+    * When a character dies, all their items get destroyed.
+    * A dead character should be considered a non-existent character in the subsequent events after his/her death.
+
+Input:
+The input file contains (n+1) lines where 1≤n≤2000. The first line of the input contains a single integer denoting n. The number n
+represents the number of events in the story. Each of the next n lines contains an event. Below is the format of each input. The format followed is [T]N, where T is the type of the input value and N
+is a descriptive name of the value and what it represents. Everything inside the parentheses "()" is an additional event description. 
+Each name, whether it be a character name or an item name, consists of lowercase latin letters and its length is at max 10.
+
+  1) "Create character $[string]type $[string]name $[int]initHP" (type can be fighter, wizard, or archer. 1≤initHP≤200).
+  2) "Create item weapon $[string]ownerName $[string]weaponName $[int]damageValue" (1≤damageValue≤50).
+  3) "Create item potion $[string]ownerName $[string]potionName $[int]healValue" (1≤healValue≤50).
+  4) "Create item spell $[string]ownerName $[string]spellName $[int]m $[string_1, string_2, ..., string_m]characterNames" (set of 0≤m≤50 unique characters names the spell can be applied on).
+  5) "Attack $[string]attackerName $[string]targetName $[string]weaponName" (attacker and target can be the same).
+  6) "Cast $[string]casterName $[string]targetName $[string]spellName" (caster and target can be the same).
+  7) "Drink $[string]supplierName $[string]drinkerName $[string]potionName" (supplier and drinker can be the same).
+  8) "Dialogue $[string]speaker (a character name or "Narrator") $[int]sp_len $[string_1, string_2, ..., string_sp_len]speech" (the speech itself where its length is sp_len, 1≤sp_len≤10).
+  9) "Show characters" (show alive characters in alphabetical order).
+  10) "Show weapons $[string]characterName" (show weapons owned by characterName in alphabetical order).
+  11) "Show potions $[string]characterName" (show potions owned by characterName in alphabetical order).
+  12) "Show spells $[string]characterName" (show spells owned by characterName in alphabetical order).
+  13) The death of characters should be handled automatically.
+
+Output:
+The ordered list of outputs matches the events in the input. Each event output is on its own line. Note that the number of lines is undetermined before executing the code due to the death event.
+
+  1) Expected output: "A new $[string]type came to town, $[string]name."
+  2) Expected output: "$[string]ownerName just obtained a new weapon called $[string]weaponName."
+  3) Expected output: "$[string]ownerName just obtained a new potion called $[string]potionName."
+  4) Expected output: "$[string]ownerName just obtained a new spell called $[string]spellName."
+  5) Expected output: "$attackerName attacks $targetName with their $weaponName!"
+  6) Expected output: "$casterName casts $spellName on $targetName!"
+  7) Expected output: "$drinkerName drinks $potionName from $supplierName."
+  8) Expected output: "$speaker: $speech"
+  9) Split characters by a single space. Each character should be of the format $[string]name:$[string]type:$[int]currentHealthPoints.
+  10) Split weapons by a single space. Each weapon in the output should be of the form $[string]weaponName:$[int]weaponDamage.
+  11) Split potions by a single space. Each potion in the output should be of the form $[string]potionName:$[int]potionHealValue.
+  12) Split spells by a single space. Each spell in the output should be of the form $[string]spellName:$[int]numAllowedTargets.
+  13) Death expected output: "$[string]charName has died..."

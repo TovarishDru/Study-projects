@@ -1,0 +1,20 @@
+Write a computer program in C++ (CPP 17)  programming language implement predator-prey model:
+
+  v′(t)=α1v(t)−β1v(t)k(t),
+  k′(t)=−α2k(t)+β2v(t)k(t).
+
+You must use the result obtained by the analytical solution with the use of methods of linear algebra.​
+
+Input format:
+
+  - the initial number of victims v0
+  - the initial number of killers k0
+  - the coefficients α1, β1, α2, β2
+  - the time limit T
+  - the  number of the points of approximation N
+
+Output format:
+
+  - the array of time moments tiin[0;T] entitled <<t:>>
+  - the array of corresponding amount of victims v(ti) entitled <<v:>>
+  - the array of corresponding amount of killers k(ti) entitled <<k:>>

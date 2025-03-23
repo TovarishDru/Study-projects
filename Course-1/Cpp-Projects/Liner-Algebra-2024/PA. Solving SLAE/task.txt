@@ -1,0 +1,18 @@
+Write a computer program in C++ (CPP 17) programming language to solve a system of linear equations A⋅x=b.
+
+For this purpose implement a class <<ColumnVector>> with necessary fields, methods and necessary operators' overloading for summation, multiplication, inputting-outputting and computing the norm.
+
+Input format
+
+  - A square matrix A as in the previous exercise.
+  - A vector of free coefficients  b (in element-wise manner with the dimension firstly).
+
+Output format
+
+  - Code the elimination. Print the steps as in the previous task within the section <<Gaussian process:>>. Print the transformed A matrix and then transformed vector b on each step.
+  - Accomplish the diagonal normalization. Entitle the section with the line <<Diagonal normalization:>>. Do not forget to print out a free vector.
+  - The final answer should be also placed within the new section <<Result:>>
+
+Remark:
+
+In case of singularity of the matrix A print just one line: <<Error: matrix A is singular>>

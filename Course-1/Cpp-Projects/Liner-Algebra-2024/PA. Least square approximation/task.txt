@@ -1,0 +1,15 @@
+Write a computer program in C++ (CPP 17)  programming language to compose a least square approximation for a given data set.
+
+Input format:
+
+  - the length m of data set
+  - m lines with experimental data ti *space* bi
+  - the degree of the approximation polynomial n.
+
+Output format:
+
+  - the matrix A itself right after the line <<A:>>
+  - the matrix  ATA right after the line <<A_T*A:>>
+  - the matrix  (ATA)−1 after the line <<(A_T*A)^-1:>>
+  - the matrix  ATb after the line <<A_T*b:>>
+  - the answer itself after the line <<x~:>>

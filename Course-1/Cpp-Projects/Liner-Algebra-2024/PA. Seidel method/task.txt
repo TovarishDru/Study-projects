@@ -1,0 +1,23 @@
+Write a computer program in C++ (CPP 17)  programming language to solve the given system of linear algebraic equations with the use of iterative Seidel method.
+
+The input contains:
+
+  - A square matrix A (in element-wise manner with the dimension firstly) as in the previous exercises.
+  - A vector of free coefficients b (in element-wise manner with the dimension firstly).
+  - The approximation accuracy ε.
+
+Output format:
+
+  - The string <<The method is not applicable>> 
+
+or        
+
+  - Matrix α, entitled <<alpha:>>
+  - Vector β, entitled <<beta:>> 
+  - Matrix B, entitled <<B:>>
+  - Matrix C, entitled <<C:>>
+  - Matrix I−B, entitled <<I-B:>>
+  - Matrix (I−B)−1, entitled <<(I-B)_-1:>>
+  - Set of vectors xi of the approximation steps, each entitled <<x(i):>> (you don't need to print x0=β, start right with the first step)
+  - Current accuracy e for each step, entitled <<e:>> (skipped for the last step).
+  - The approximate solution entitled <<x~:>>
