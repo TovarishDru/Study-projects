@@ -1,0 +1,50 @@
+An IT university desires to develop a course management system. Courses have fixed capacities and students can only be enrolled in a 
+limited number of courses if their capacity allows for it.
+
+Rules:
+    - Each course has a capacity of 3 students.
+    - A student can't be enrolled in the same course more than once.
+    - A student cannot be enrolled in more than 3 courses.
+    - A student cannot be enrolled in a course that is full (already 3 students enrolled this course).
+    - A student cannot drop a course, if not enrolled.
+    - Professor cannot be assigned to a course he/she is already teaching.
+    - Professor cannot be assigned to teach more than 2 courses.
+    - Professor cannot be exempted from the course, if not teaching it.
+
+Constrains:
+    - Student and professor names should contain English characters only.
+    - Course name should contain English characters separated by underscore symbols, if needed. By both sides from underscore(s) there has to be at least one English character.
+    - Courses', students', professors' names and course level are a non-sensitive letter case, for example "Java" equals "java", "master" equals "MASTER".
+    - The course level should be either "bachelor" or "master".
+    - Student name, professor name and course level should not be having values equal to commands titles.
+
+Input
+The inputs are represented by standard input. The program should read the input line by line. It checks the correctness of the input line, if it is correct, it waits for the next 
+line, otherwise it prints an error message and terminates the program. Whenever the empty line is met, the program should stop its execution. There can be multiple commands.
+
+The input should be in the following format:
+
+Add course	        course
+                    courseName
+                    courseLevel
+
+Add student	        student
+                    memberName
+
+Add professor	    professor
+                    memberName
+Enroll to course	enroll
+                    memberId
+                    courseId
+
+Drop from course	drop
+                    memberId
+                    courseId
+                        
+Assign to course	teach
+                    memberId
+                    courseId
+                        
+Exempt from course	exempt
+                    memberId
+                    courseId

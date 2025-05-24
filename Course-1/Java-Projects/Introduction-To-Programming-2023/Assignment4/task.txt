@@ -1,0 +1,83 @@
+Your task in this assignment is to implement a simulation of the insects moving game. There are four types of insects that should be considered:
+
+    - Ants can move vertically, horizontally, and diagonally.
+    - Butterflies can move only vertically and horizontally.
+    - Spiders can move only diagonally.
+    - Grasshoppers can jump only vertically and horizontally but by skipping odd fields.
+
+Diagram clarifications:
+
+    - Method travelDirection() is used to simulate insect traveling a specific direction. Therefore, it will return amount of food eaten during the travel,
+    but also, it will update board according to the move of the insect (remove insect and eaten food from the board).
+
+    - Method travelDiagonally() is used to simulate insect traveling a specific diagonal direction (North-East, South-East, South-West, North-West). 
+    This method will return amount of eaten food and update the board.
+
+    - Method travelOrthogonally() is used to simulate insect traveling a specific orthogonal direction (North, East, South, West). 
+    This method will return amount of eaten food and update the board.
+
+In addition to insects, the board can contain the food points with the specific amount of food. For the purpose of this game we will consider that all insects eat the same type of food.
+The goal of each insect is by collecting as much food as possible to try to leave the board. However, each insect can choose only one direction and move only in this direction for the rest of time.
+
+    - Ants can choose North (N), East (E), South (S), West (W), North-East (NE), South-East (SE), South-West (SW), and North-West (NW) directions.
+    - Butterflies can choose North (N), East (E), South (S), West (W) directions.
+    - Spiders can choose North-East (NE), South-East (SE), South-West (SW), and North-West (NW) directions (since they can move only diagonally)
+    - Grasshoppers can choose North (N), East (E), South (S), West (W) directions.
+    - In addition, each insect is colored in one of the following colors: Red, Green, Blue, Yellow.
+
+The rules of the game are the following:
+
+    Each insect can see all the food points on the board, but it cannot see any other insects (even in neighbor cells). Therefore, insects will make decisions based only on positions 
+    of the food points, but it will ignore other insects' positions when making decisions. Note that not being able to see other insects can cause suboptimal decisions (unexpected deaths).
+    Once an insect chooses a direction, it will start moving in this direction (without changing direction) and will eat all food on its path until it is out of the board or it is killed.
+    If an insect meets another insect of the same color on its path they will just ignore each other. However, if it visits the cell of differently colored insects, the former will be 
+    killed by the latter. Note that a grasshopper will not be killed if it jumps over the insect of a different color.
+
+The tricky part of the game is that an insect will choose movement direction based only on maximization of eaten food from food points positions. However, since insects cannot see other insects, 
+it can happen so that an insect will visit the cell of the different colored insect and will be killed without actually eating all the food on the unvisited cells of the remaining path.
+If there are two or more directions with the same amount of food, an insect will prioritize the directions in the following order:
+
+    North (N)
+    East (E)
+    South (S)
+    West (W)
+    North-East (NE)
+    South-East (SE)
+    South-West (SW)
+    North-West (NW)
+
+For example, if a red ant sees the same amount of food in the South-East (SE) direction and the North-West (NW) direction, it will choose the South-East (SE) direction because the latter has a higher priority.
+In addition to the rules, there are some constraints to be considered:
+
+One cell can contain only one insect, only one food point of any amount not less than 1, or nothing.
+There can be only one instance of the specific insect type of the specific color on the board.
+
+Input
+The input file (input.txt) should contain the following lines:
+
+    The first line of the input should contain an integer D (4 ≤ D ≤ 1000), which represents the size of the board (the board is D × D).
+    The second line of the input should contain an integer N (1 ≤ N ≤ 16), which represents the number of insects of the board.
+    The third line of the input should contain an integer M (1 ≤ M ≤ 200), which represents the number of food points on the board.
+    The following N lines of of the input should contain four values separated by a single space in the following format: Color InsectType XCoordinate XCoordinate
+    The following M lines of of the input should contain three values separated by space in the following format: FoodAmount XCoordinate YCoordinate
+    Note that coordinates are indexed from 1 to D.
+    Note that there will always be a new line character at the end of the input file.
+
+Output
+First of all, you need to check the input data for potential violations of the above mentioned rules. Here is the list of error messages that you should print to your output 
+file (output.txt) in case of any errors in the input file:
+
+    Invalid board size - should be printed if the board size D is out of the boundaries.
+    Invalid number of insects - should be printed if the number of insects N is out of the boundaries.
+    Invalid number of food points - should be printed if the number of food points M is out of the boundaries.
+    Invalid insect color - should be printed if color of the insect is different from Red, Green, Blue, and Yellow.
+    Invalid insect type - should be printed if the type of the insect is different from Ant, Butterfly, Spider, and Grasshopper.
+    Invalid entity position - should be printed if the insect or food point is located out of the board.
+    Duplicate insects - should be printed if there are more than one insect of the same color and type on the board, e.g., two blue ants on the board
+    Two entities in the same position - should be printed in case of having more than one type of entity in the same cell.
+    You should always print only the first error found in the input file and then terminate the program without throwing any other exceptions. It is guaranteed that there will be no other type of errors in the input file.
+    For invalid inputs you should use user-defined exceptions to handle errors and report their messages using the overridden getMessage() method.
+
+If there is no any of the above mentioned issues in the input file, your output file (output.txt) should contain N lines (one for each insect from the input), in the following format:
+
+    Color InsectType Direction AmountOfFoodEaten

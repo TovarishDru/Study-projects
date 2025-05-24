@@ -1,0 +1,58 @@
+Introduction
+
+    In this assignment, you will develop a system for the management of an online bookstore. Implemented system should support book insertion, 
+    controlling access to books, users subscriptions, and notifying users about books updates. The main objective of the assignment is to apply 
+    design patterns covered in SSAD classes.
+
+Entities
+The main entities present in the system are the following:
+
+    Book: Represents a book entity and has title, author, and price (floating point number) properties. All books are available in two formats: Textual and Audio.
+    User: There are two types of users: Standard and Premium. Users of both types can subscribe to get notifications about books updates. However, Standard users
+    can access only textual version of books, while Premium users can access both textual and audio versions of books.
+
+Operations
+
+Your system should support the following set of operations:
+
+    Input command	                Description	                                            Output
+    createBook(title author price)	Creates a new book with the given properties	        If book with the given title already exists it should print message "Book already exists" without quotes; otherwise there should be no output.
+    createUser(user_type username)	Creates a new user according to the given type      	If user with the given username already exists it should print message "User already exists" without quotes; otherwise there should be no output.
+    subscribe(username)	            Subscribes user to notifications about prices updates	If user with the given username is already subscribed it should print message "User already subscribed" without quotes; otherwise there should be no output.
+    unsubscribe(username)	        Unsubscribes user from notifications	                If user with the given username is not subscribed it should print message "User is not subscribed" without quotes; otherwise there should be no output.
+    updatePrice(title new_price)	Updates the price and notify aubscribers	            If there are no subscribed users, there should be no output; otherwise it should print the following message without quotes for all subscribed users 
+                                                                                            "username notified about price update for title to new_price". Note that users should be notified in the same order in which they subscribed. In other words, if user A subscribed before user B, user A should be notified about update before user B.
+    readBook(username title)	    User reading book with the given title	                It should print the following message without quotes "username reading title by author"
+    listenBook(username title)	    User listening book with the given title	            In case of standard user trying to listen a book it should print the following message without quotes "No access". In case of premium user it should print the following message without quotes "username listening title by author"
+    end	                            Used to announce end of the input file	
+
+Error Handling
+There are four potential problems in input that you need to handle:
+
+Problem	                                                            Response
+Creating a book with the title that already exists in the system	Book already exists
+Creating a user with the username that already exists           	User already exists
+Trying to subscribe user that is already subscribed	                User already subscribed
+Trying to unsubscribe user that is not subscribed	                User is not subscribed
+
+After error handling execution should not be terminated. Instead, it should continue until end command.
+
+In is important to note the following constraints:
+
+    It is guaranteed that all books will have one-word name (for example, "AnnaKarenina" instead of "Anna Karenina"). The same applies for the book authors (for example, "LeoTolstoy" insted of "Leo Tolstoy"). Therefore, you do not need to handle multiple-words cases.
+    There are no test cases with subscribing or unsubscribing users that does not exist in the system.
+    There are no test cases with updating a price of book that does not exist in the system.
+    There are no test cases with non-existent user attempting to read/listen a book.
+    There are no test cases with user attempting to read/listen non-existent book.
+    There are no test cases with other types of invalid input.
+
+
+Input
+    Input will consist of no more than 100 commands specified above.
+    The end of input is specified by end command.
+    Each input command has new line character at the end (including the last command).
+    Standard input should be used.
+
+Output
+    Output for each command should have new line character at the end.
+    Standard output should be used.
